@@ -109,22 +109,29 @@ for (let category in products) {
     proMain.style.display = "flex"
     proMain.style.marginLeft = "100px"
     proMain.style.marginTop = "50px"
-
+    
     for (let item in products[category]) {
         let prod = document.createElement("div")
         let img = document.createElement("img")
         let p = document.createElement("p")
-
+        
         prod.style.marginRight = "50px"
+        prod.style.border = "2px solid black"
+        prod.style.borderRadius = "13px"
+        prod.style.backgroundColor = "black"
 
         img.src = products[category][item].img
         img.style.width = "300px"
         img.style.height = "180px"
+        img.style.borderRadius = "10px 10px 0 0"
 
         p.innerText =
             products[category][item].model + " - " +
         products[category][item].year + " - " +
         products[category][item].color;
+        p.style.textAlign = "center"
+        p.style.color = "white"
+        p.style.fontWeight = "bold"
 
         prod.appendChild(img)
         prod.appendChild(p)
@@ -132,3 +139,25 @@ for (let category in products) {
     }
     main.appendChild(proMain)
 }
+
+
+let select = document.getElementById("selecter")
+
+select.addEventListener("change", function() {
+    let value = this.value;
+
+    for(let category in products){
+        
+        let selection = document.getElementById(category);
+        
+        if(value === "all"){
+            selection.style.display = "flex";
+        }
+        else if(value === category){
+            selection.style.display = "flex";
+        }
+        else{
+            selection.style.display = "none";
+        }
+    }
+})
